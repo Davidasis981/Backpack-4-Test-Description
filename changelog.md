@@ -1,5 +1,11 @@
 # change log
 
+## 1.0.0
+### Added
+* job executer server
+
+NOTE: So far, the project solves the intended tasks almost correctly.
+
 ## 1.0.0-alfa.4
 ### Added
 * job repository
