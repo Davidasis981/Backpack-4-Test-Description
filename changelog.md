@@ -1,5 +1,9 @@
 # change log
 
+## 1.0.0-alfa.3
+### Fixing
+* adding unique lable to username and email
+* adding user_docs table to database and save a record when user create
 
 ## 1.0.0-alfa.2
 ### Added
