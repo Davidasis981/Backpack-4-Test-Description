@@ -1,5 +1,11 @@
 # change log
 
+## 1.0.0-alfa.4
+### Added
+* job repository
+* job controller
+* job route
+
 ## 1.0.0-alfa.3
 ### Fixing
 * adding unique lable to username and email
