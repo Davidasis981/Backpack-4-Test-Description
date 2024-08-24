@@ -1,11 +1,14 @@
 const UserRepositoryMySQL = require('../repositories/userRepositoryMySQL');
 
 const bcrypt = require('bcryptjs');
-const fs = require('fs');
-const path = require('path');
 const jwt = require('jsonwebtoken');
 
 const userRepository = new UserRepositoryMySQL();
+
+function deletingPasswordFields(result) {
+    result.forEach(user => delete user.password);
+    return result;
+}
 
 class UserController {
     static async registerUser(req, res) {
@@ -31,8 +34,6 @@ class UserController {
 
     static async loginUser(req, res) {
         try {
-            console.log('I am in login user function!');
-            
             const { username, password } = req.body;
             const user = await userRepository.getUserByUsername(username);
             
@@ -76,7 +77,26 @@ class UserController {
             const inactiveUsers = await userRepository.getInactiveUsers();
             res.json({'data': inactiveUsers});
         } catch (error) {
-            res.status(500).json({ message: 'Error updating user profile', 'error': error.message });
+            res.status(500).json({ message: 'Error when get inactive users', 'error': error.message });
+        }
+    }
+
+
+    static async getAllUsers(req, res) {
+        try {
+            const allUsers = await userRepository.getAllUsers();
+            res.json(deletingPasswordFields(allUsers));
+        } catch (error) {
+            res.status(500).json({ message: 'Error when get all users', 'error': error.message })
+        }
+    }
+
+    static async getAllUserdocs(req, res) {
+        try {
+            const allUserdocs = await userRepository.getAllUserdocs();
+            res.json(deletingPasswordFields(allUserdocs));
+        } catch (error) {
+            res.status(500).json({ message: 'Error when get all users', 'error': error.message })
         }
     }
 
