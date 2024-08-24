@@ -89,6 +89,37 @@ class UserRepositoryMySQL extends UserRepository {
             throw new Error('Database error');
         }
     }
+
+    async updateUserStatus(userId, status) {
+        try {
+            const [result] = await this.connection.execute(
+                `UPDATE user_docs SET status = ? WHERE id = ?`,
+                [status, userId]
+            );
+            return `user doc by ID ${userId} updated to active!`;
+        } catch (error) {
+            throw new Error(`Database error: ${error.message}`);
+        }
+    }
+
+    async getAllUsers() {
+        try {
+            const [rows] = await this.connection.execute(`SELECT * FROM users`);
+            return rows;
+        } catch(error) {
+            throw new Error(`Database error: ${error.message}`);
+        }
+    }
+
+    async getAllUserdocs() {
+        try {
+            const [rows] = await this.connection.execute(`SELECT * FROM user_docs`);
+            return rows;
+        } catch(error) {
+            throw new Error(`Database error: ${error.message}`);
+        }
+    }
+
 }
 
 module.exports = UserRepositoryMySQL;

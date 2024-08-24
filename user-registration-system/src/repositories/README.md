@@ -58,3 +58,9 @@ CREATE TABLE user_docs (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ```
+
+## create Admin User
+```sql
+INSERT INTO users (username, password, age, email, photo, role)
+VALUES ('admin', 'adminpassword', 30, 'admin@example.com', 'adminphoto.jpg', 'admin');
+```
