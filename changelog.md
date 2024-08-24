@@ -1,6 +1,13 @@
 # change log
 
 
+## 1.0.0-alfa.2
+### Added
+* login user
+* edit profile
+* adding JWT for authentication and authorization
+* adding a sample url just for admin
+
 ## 1.0.0-alfa.1
 ### Added
 * registraion API

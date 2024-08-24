@@ -20,7 +20,7 @@ class UserRepositoryMySQL extends UserRepository {
         return result.insertId;
     }
 
-    async findUserByUsername(username) {
+    async getUserByUsername(username) {
         const [rows] = await this.connection.execute(
             `SELECT * FROM users WHERE username = ?`,
             [username]
@@ -28,7 +28,38 @@ class UserRepositoryMySQL extends UserRepository {
         return rows[0];
     }
 
-    // Implement other methods...
+    async updateUser(userId, data) {
+        let sql = 'UPDATE users SET ';
+        const updates = [];
+        const values = [];
+
+        if (data.username) { // username updated
+            updates.push('username = ?');
+            values.push(data.username);
+        }
+
+        if (data.age) { // age updated
+            updates.push('age = ?');
+            values.push(data.age);
+        }
+
+        if (data.email) { // email updated
+            updates.push('email = ?');
+            values.push(data.email);
+        }
+
+        // Ensure at least one field is updated
+        if (updates.length === 0) {
+            throw new Error('No valid fields provided for update');
+        }
+
+        sql += updates.join(', ') + ' WHERE id = ?';
+        values.push(userId);
+
+        // Execute the query
+        const [result] = await this.connection.execute(sql, values);
+        return result.affectedRows > 0;
+    }
 }
 
 module.exports = UserRepositoryMySQL;
