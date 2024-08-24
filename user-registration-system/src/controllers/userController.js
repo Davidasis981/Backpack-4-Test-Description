@@ -1,5 +1,4 @@
 const UserRepositoryMySQL = require('../repositories/userRepositoryMySQL');
-const UserRepository = require('../repositories/userRepository');
 
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
@@ -23,12 +22,10 @@ class UserController {
                 photo,
             });
 
-            const userDocPath = path.join(__dirname, `../uploads/${username}.txt`);
-            fs.writeFileSync(userDocPath, `docName: college\nstatus: inactive\nusername: ${username}`);
-
-            res.status(201).json({ message: 'User registered successfully', userId });
+            const docId = await userRepository.createDocument({userId});
+            res.status(201).json({ message: 'User registered successfully', userId, docId });
         } catch (error) {
-            res.status(500).json({ message: 'Error registering user', error });
+            res.status(500).json({ message: 'Error registering user', 'error': error.message });
         }
     }
 
@@ -68,6 +65,16 @@ class UserController {
             await userRepository.updateUser(userId, { username, age, email });
 
             res.json({ message: 'User profile updated successfully' });
+        } catch (error) {
+            res.status(500).json({ message: 'Error updating user profile', 'error': error.message });
+        }
+    }
+
+
+    static async getInactiveUsers(req, res) {
+        try {
+            const inactiveUsers = await userRepository.getInactiveUsers();
+            res.json({'data': inactiveUsers});
         } catch (error) {
             res.status(500).json({ message: 'Error updating user profile', 'error': error.message });
         }
