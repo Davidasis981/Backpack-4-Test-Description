@@ -13,9 +13,26 @@ class UserRepositoryMySQL extends UserRepository {
     }
 
     async createUser(user) {
+        try {
+            const [result] = await this.connection.execute(
+                `INSERT INTO users (username, password, age, email, photo) VALUES (?, ?, ?, ?, ?)`,
+                [user.username, user.password, user.age, user.email, user.photo]
+            );
+            return result.insertId;
+        }
+        catch(error) {
+            if(error.code === 'ER_DUP_ENTRY') {
+                throw new Error('username or email already exists')
+            }
+            // you can log error here!
+            throw new Error(`database Error: ${error.message}`);
+        }
+    }
+
+    async createDocument(doc) {
         const [result] = await this.connection.execute(
-            `INSERT INTO users (username, password, age, email, photo) VALUES (?, ?, ?, ?, ?)`,
-            [user.username, user.password, user.age, user.email, user.photo]
+            `INSERT INTO user_docs (user_id) VALUES (?)`,
+            [doc.userId]
         );
         return result.insertId;
     }
@@ -59,6 +76,18 @@ class UserRepositoryMySQL extends UserRepository {
         // Execute the query
         const [result] = await this.connection.execute(sql, values);
         return result.affectedRows > 0;
+    }
+
+    async getInactiveUsers() {
+        try {
+            const [rows] = await this.connection.execute(
+                `SELECT * FROM user_docs WHERE status = 'inactive'`
+            );
+            return rows;
+        } catch (error) {
+            console.error('Error fetching inactive users:', error.message);
+            throw new Error('Database error');
+        }
     }
 }
 
