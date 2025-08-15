@@ -1,4 +1,4 @@
-You can download my post collection from [here +](uploads/9776f8ac9b7b9943ae6d066b6d485c71/final_exam.postman_collection.json)
+You can download test description here: [here +](https://github.com/user-attachments/files/21797378/default.pdf)
 
 # User Registration & Job Scheduling API
 This project is a `Node.js` and `Express` application that provides a system for user registration, login, profile management, and job scheduling. The application follows the `Repository design pattern` and includes `JWT-based authentication` and `role-based access control`. Admins can define periodic jobs to be executed, such as activating inactive user files. The project emphasizes security, validation, clean code.
