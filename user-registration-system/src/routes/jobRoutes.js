@@ -4,8 +4,8 @@ const { authenticateJWT, authorizeRoles } = require('../middlewares/auth');
 
 const { 
     addJobValidation, 
-    removeJobValidation,  
-    handleValidationErrors 
+    removeJobValidation,
+    handleValidationErrors
 } = require('../validators/jobValidator');
 
 const router = express.Router();
